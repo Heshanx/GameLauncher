@@ -24,6 +24,7 @@
 		939763D2300AD68200D22302 /* LightItUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763D1300AD68200D22302 /* LightItUpView.swift */; };
 		939763D6300AF3B800D22302 /* QuizRushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763D5300AF3B800D22302 /* QuizRushView.swift */; };
 		939763D8300AF77900D22302 /* TriviaQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763D7300AF77900D22302 /* TriviaQuestion.swift */; };
+		939763DA300AF84300D22302 /* TriviaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763D9300AF84300D22302 /* TriviaService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		939763D1300AD68200D22302 /* LightItUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightItUpView.swift; sourceTree = "<group>"; };
 		939763D5300AF3B800D22302 /* QuizRushView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizRushView.swift; sourceTree = "<group>"; };
 		939763D7300AF77900D22302 /* TriviaQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaQuestion.swift; sourceTree = "<group>"; };
+		939763D9300AF84300D22302 /* TriviaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 			children = (
 				939763D5300AF3B800D22302 /* QuizRushView.swift */,
 				939763D7300AF77900D22302 /* TriviaQuestion.swift */,
+				939763D9300AF84300D22302 /* TriviaService.swift */,
 			);
 			path = QuizRush;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				9392A88D300A797D00343152 /* ContentView.swift in Sources */,
 				939763CD300AC62000D22302 /* GameCard.swift in Sources */,
 				939763BC300AC2FE00D22302 /* TapFrenzyView.swift in Sources */,
+				939763DA300AF84300D22302 /* TriviaService.swift in Sources */,
 				939763D2300AD68200D22302 /* LightItUpView.swift in Sources */,
 				939763C6300AC5D900D22302 /* GameIcon.swift in Sources */,
 				939763C4300AC5C700D22302 /* PrimaryButton.swift in Sources */,
