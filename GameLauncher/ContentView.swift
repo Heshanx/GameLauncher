@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Tapfrenzy
+//  GameLauncher
 //
 //  Created by Heshan Nadeera on 2026-07-17.
 //
@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var score = 0
     var body: some View {
         VStack(spacing: 30) {
-            Text("Score: 0")
+            Text("Score: \(score)")
                 .font(.title2)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
             
@@ -18,7 +19,7 @@ struct ContentView: View {
                 .font(.title3)
             
             Button(action: {
-                
+                score += 1
             }) {
                 Text("Tap")
                     .font(.largeTitle)

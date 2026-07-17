@@ -1,14 +1,14 @@
 //
-//  TapfrenzyTests.swift
-//  TapfrenzyTests
+//  GameLauncherTests.swift
+//  GameLauncherTests
 //
 //  Created by Heshan Nadeera on 2026-07-17.
 //
 
 import XCTest
-@testable import Tapfrenzy
+@testable import GameLauncher
 
-final class TapfrenzyTests: XCTestCase {
+final class GameLauncherTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
