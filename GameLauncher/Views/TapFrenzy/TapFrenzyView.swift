@@ -1,39 +1,47 @@
 //
-//  ContentView.swift
+//  TapFrenzyView.swift
 //  GameLauncher
 //
 //  Created by Heshan Nadeera on 2026-07-17.
 //
 
+import Foundation
 import SwiftUI
 
-struct ContentView: View {
+struct TapFrenzyView: View {
+
     @State private var score = 0
+
     var body: some View {
+
         VStack(spacing: 30) {
+
             Text("Score: \(score)")
                 .font(.title2)
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-            
+                .bold()
+
             Text("Time: 10")
                 .font(.title3)
-            
-            Button(action: {
+
+            Button {
+
                 score += 1
-            }) {
+
+            } label: {
+
                 Text("Tap")
                     .font(.largeTitle)
-                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .bold()
                     .frame(width: 200, height: 200)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
+                    .background(.blue)
+                    .foregroundStyle(.white)
                     .clipShape(Circle())
-            }
-        }
-        .padding()
-    }
-}
 
-#Preview {
-    ContentView()
+            }
+
+        }
+        .navigationTitle("Tap Frenzy")
+
+    }
+
 }
