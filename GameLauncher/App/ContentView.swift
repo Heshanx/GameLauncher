@@ -34,6 +34,20 @@ struct ContentView: View {
                                 icon: "hand.tap.fill",
                                 color: .blue
                             )}
+                        NavigationLink(destination: LightItUpView()) {
+                            
+                            GameCard(
+                                title: "Light It Up",
+                                icon: "hare.fill",
+                                color: .orange
+                            )}
+                        NavigationLink(destination: QuizRushView()) {
+                            
+                            GameCard(
+                                title: "Quiz Rush",
+                                icon: "",
+                                color: .purple
+                            )}
                     }
                 }
             }
