@@ -11,6 +11,10 @@ import SwiftUI
 struct TapFrenzyView: View {
 
     @State private var score = 0
+    @State private var timeRemaining = 10
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .common)
+        .autoconnect()
 
     var body: some View {
 
@@ -20,7 +24,7 @@ struct TapFrenzyView: View {
                 .font(.title2)
                 .bold()
 
-            Text("Time: 10")
+            Text("Time: \(timeRemaining)")
                 .font(.title3)
 
             Button {
@@ -39,6 +43,14 @@ struct TapFrenzyView: View {
 
             }
 
+        }
+        .onReceive(timer) { _ in
+            if timeRemaining > 0 {
+                timeRemaining -= 1
+            }
+            else {
+                print("Time Over")
+            }
         }
         .navigationTitle("Tap Frenzy")
 
