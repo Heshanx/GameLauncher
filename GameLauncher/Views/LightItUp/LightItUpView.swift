@@ -7,14 +7,10 @@
 
 import SwiftUI
 
-// MARK: - Card Model
-
 struct Card: Identifiable {
     let id = UUID()
     var isLit = false
 }
-
-// MARK: - Levels
 
 enum Level: CaseIterable {
 
@@ -55,8 +51,6 @@ enum Level: CaseIterable {
     }
 }
 
-// MARK: - View
-
 struct LightItUpView: View {
 
     @State private var cards: [Card] = []
@@ -79,7 +73,7 @@ struct LightItUpView: View {
 
         VStack(spacing:20) {
 
-            Text("💡 Light It Up")
+            Text("Light It Up")
                 .font(.largeTitle)
                 .bold()
 
@@ -232,15 +226,11 @@ struct LightItUpView: View {
 
     }
 
-    // MARK: Cards
-
     func createCards(for level: Level) {
 
         cards = Array(repeating: Card(), count: level.cardCount)
 
     }
-
-    // MARK: Level Progression
 
     func updateLevel() {
 
@@ -278,8 +268,6 @@ struct LightItUpView: View {
 
     }
 
-    // MARK: Lighting
-
     func startLightTimer() {
 
         lightTimer?.invalidate()
@@ -288,8 +276,6 @@ struct LightItUpView: View {
 
         lightTimer = Timer.scheduledTimer(withTimeInterval: level.lightDuration,
                                           repeats: true) { _ in
-
-            // Missed cards
 
             let missed = cards.filter { $0.isLit }.count
 

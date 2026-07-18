@@ -26,6 +26,15 @@
 		939763D8300AF77900D22302 /* TriviaQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763D7300AF77900D22302 /* TriviaQuestion.swift */; };
 		939763DA300AF84300D22302 /* TriviaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763D9300AF84300D22302 /* TriviaService.swift */; };
 		939763DC300AF94600D22302 /* QuizRushViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763DB300AF94600D22302 /* QuizRushViewModel.swift */; };
+		939FC5F5300B0F700001D676 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC5F4300B0F700001D676 /* GameMode.swift */; };
+		939FC5F7300B0F960001D676 /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC5F6300B0F960001D676 /* GameSession.swift */; };
+		939FC5FA300B0FBD0001D676 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC5F9300B0FBD0001D676 /* SessionStore.swift */; };
+		939FC5FD300B10330001D676 /* GameLauncherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC5FC300B10330001D676 /* GameLauncherApp.swift */; };
+		939FC5FF300B104B0001D676 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC5FE300B104B0001D676 /* MainTabView.swift */; };
+		939FC601300B105C0001D676 /* StatsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC600300B105C0001D676 /* StatsTab.swift */; };
+		939FC603300B10850001D676 /* MapTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC602300B10850001D676 /* MapTab.swift */; };
+		939FC605300B10940001D676 /* SettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC604300B10940001D676 /* SettingsTab.swift */; };
+		939FC608300B11540001D676 /* SharedResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC607300B11540001D676 /* SharedResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +77,15 @@
 		939763D7300AF77900D22302 /* TriviaQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaQuestion.swift; sourceTree = "<group>"; };
 		939763D9300AF84300D22302 /* TriviaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaService.swift; sourceTree = "<group>"; };
 		939763DB300AF94600D22302 /* QuizRushViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizRushViewModel.swift; sourceTree = "<group>"; };
+		939FC5F4300B0F700001D676 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
+		939FC5F6300B0F960001D676 /* GameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
+		939FC5F9300B0FBD0001D676 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		939FC5FC300B10330001D676 /* GameLauncherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLauncherApp.swift; sourceTree = "<group>"; };
+		939FC5FE300B104B0001D676 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		939FC600300B105C0001D676 /* StatsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTab.swift; sourceTree = "<group>"; };
+		939FC602300B10850001D676 /* MapTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTab.swift; sourceTree = "<group>"; };
+		939FC604300B10940001D676 /* SettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTab.swift; sourceTree = "<group>"; };
+		939FC607300B11540001D676 /* SharedResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +174,10 @@
 		939763B9300AC1F100D22302 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				939FC606300B113A0001D676 /* Shared */,
+				939FC5FB300B10080001D676 /* Tabs */,
+				939FC5F8300B0FA80001D676 /* Services */,
+				939FC5F3300B0F570001D676 /* Models */,
 				939763D4300AF39900D22302 /* QuizRush */,
 				939763CE300AD62900D22302 /* LightItUp */,
 				939763C9300AC5FE00D22302 /* Home */,
@@ -225,6 +247,43 @@
 				939763DB300AF94600D22302 /* QuizRushViewModel.swift */,
 			);
 			path = QuizRush;
+			sourceTree = "<group>";
+		};
+		939FC5F3300B0F570001D676 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				939FC5F4300B0F700001D676 /* GameMode.swift */,
+				939FC5F6300B0F960001D676 /* GameSession.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		939FC5F8300B0FA80001D676 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				939FC5F9300B0FBD0001D676 /* SessionStore.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		939FC5FB300B10080001D676 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				939FC5FC300B10330001D676 /* GameLauncherApp.swift */,
+				939FC5FE300B104B0001D676 /* MainTabView.swift */,
+				939FC600300B105C0001D676 /* StatsTab.swift */,
+				939FC602300B10850001D676 /* MapTab.swift */,
+				939FC604300B10940001D676 /* SettingsTab.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		939FC606300B113A0001D676 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				939FC607300B11540001D676 /* SharedResultView.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,17 +417,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				9392A88D300A797D00343152 /* ContentView.swift in Sources */,
+				939FC603300B10850001D676 /* MapTab.swift in Sources */,
 				939763CD300AC62000D22302 /* GameCard.swift in Sources */,
 				939763BC300AC2FE00D22302 /* TapFrenzyView.swift in Sources */,
+				939FC605300B10940001D676 /* SettingsTab.swift in Sources */,
 				939763DC300AF94600D22302 /* QuizRushViewModel.swift in Sources */,
 				939763DA300AF84300D22302 /* TriviaService.swift in Sources */,
+				939FC5FF300B104B0001D676 /* MainTabView.swift in Sources */,
+				939FC5F5300B0F700001D676 /* GameMode.swift in Sources */,
 				939763D2300AD68200D22302 /* LightItUpView.swift in Sources */,
 				939763C6300AC5D900D22302 /* GameIcon.swift in Sources */,
 				939763C4300AC5C700D22302 /* PrimaryButton.swift in Sources */,
 				939763C8300AC5EA00D22302 /* ScoreView.swift in Sources */,
+				939FC5F7300B0F960001D676 /* GameSession.swift in Sources */,
 				939763CB300AC60F00D22302 /* HomeView.swift in Sources */,
+				939FC5FA300B0FBD0001D676 /* SessionStore.swift in Sources */,
+				939FC5FD300B10330001D676 /* GameLauncherApp.swift in Sources */,
+				939FC601300B105C0001D676 /* StatsTab.swift in Sources */,
 				939763D6300AF3B800D22302 /* QuizRushView.swift in Sources */,
 				9392A88B300A797D00343152 /* GameLauncherApp.swift in Sources */,
+				939FC608300B11540001D676 /* SharedResultView.swift in Sources */,
 				939763D8300AF77900D22302 /* TriviaQuestion.swift in Sources */,
 				939763C1300AC58200D22302 /* Game.swift in Sources */,
 			);
