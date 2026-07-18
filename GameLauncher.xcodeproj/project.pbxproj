@@ -36,6 +36,10 @@
 		939FC608300B11540001D676 /* SharedResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC607300B11540001D676 /* SharedResultView.swift */; };
 		939FC60A300B12840001D676 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC609300B12840001D676 /* LocationService.swift */; };
 		939FC60C300B12A50001D676 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC60B300B12A50001D676 /* NotificationService.swift */; };
+		939FC60E300B1AA20001D676 /* ScoreBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC60D300B1AA20001D676 /* ScoreBadge.swift */; };
+		939FC610300B1AF20001D676 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC60F300B1AF20001D676 /* ResultView.swift */; };
+		939FC612300B1B9F0001D676 /* TapFrenzyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC611300B1B9F0001D676 /* TapFrenzyVM.swift */; };
+		939FC615300B1CB60001D676 /* StatsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC614300B1CB60001D676 /* StatsVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +92,10 @@
 		939FC607300B11540001D676 /* SharedResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedResultView.swift; sourceTree = "<group>"; };
 		939FC609300B12840001D676 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		939FC60B300B12A50001D676 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		939FC60D300B1AA20001D676 /* ScoreBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBadge.swift; sourceTree = "<group>"; };
+		939FC60F300B1AF20001D676 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		939FC611300B1B9F0001D676 /* TapFrenzyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapFrenzyVM.swift; sourceTree = "<group>"; };
+		939FC614300B1CB60001D676 /* StatsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +184,7 @@
 		939763B9300AC1F100D22302 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				939FC613300B1C080001D676 /* Games */,
 				939FC606300B113A0001D676 /* Shared */,
 				939FC5FB300B10080001D676 /* Tabs */,
 				939FC5F8300B0FA80001D676 /* Services */,
@@ -183,17 +192,8 @@
 				939763D4300AF39900D22302 /* QuizRush */,
 				939763CE300AD62900D22302 /* LightItUp */,
 				939763C9300AC5FE00D22302 /* Home */,
-				939763BA300AC2BB00D22302 /* TapFrenzy */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		939763BA300AC2BB00D22302 /* TapFrenzy */ = {
-			isa = PBXGroup;
-			children = (
-				939763BB300AC2FE00D22302 /* TapFrenzyView.swift */,
-			);
-			path = TapFrenzy;
 			sourceTree = "<group>";
 		};
 		939763BD300AC50700D22302 /* App */ = {
@@ -256,6 +256,8 @@
 			children = (
 				939FC5F4300B0F700001D676 /* GameMode.swift */,
 				939FC5F6300B0F960001D676 /* GameSession.swift */,
+				939FC611300B1B9F0001D676 /* TapFrenzyVM.swift */,
+				939FC614300B1CB60001D676 /* StatsVM.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -285,8 +287,18 @@
 			isa = PBXGroup;
 			children = (
 				939FC607300B11540001D676 /* SharedResultView.swift */,
+				939FC60D300B1AA20001D676 /* ScoreBadge.swift */,
+				939FC60F300B1AF20001D676 /* ResultView.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		939FC613300B1C080001D676 /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				939763BB300AC2FE00D22302 /* TapFrenzyView.swift */,
+			);
+			path = Games;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,14 +431,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				939FC60E300B1AA20001D676 /* ScoreBadge.swift in Sources */,
 				9392A88D300A797D00343152 /* ContentView.swift in Sources */,
 				939FC603300B10850001D676 /* MapTab.swift in Sources */,
 				939763CD300AC62000D22302 /* GameCard.swift in Sources */,
 				939763BC300AC2FE00D22302 /* TapFrenzyView.swift in Sources */,
 				939FC605300B10940001D676 /* SettingsTab.swift in Sources */,
 				939763DC300AF94600D22302 /* QuizRushViewModel.swift in Sources */,
+				939FC610300B1AF20001D676 /* ResultView.swift in Sources */,
 				939763DA300AF84300D22302 /* TriviaService.swift in Sources */,
 				939FC5FF300B104B0001D676 /* MainTabView.swift in Sources */,
+				939FC615300B1CB60001D676 /* StatsVM.swift in Sources */,
 				939FC5F5300B0F700001D676 /* GameMode.swift in Sources */,
 				939763D2300AD68200D22302 /* LightItUpView.swift in Sources */,
 				939FC60A300B12840001D676 /* LocationService.swift in Sources */,
@@ -435,6 +450,7 @@
 				939763C8300AC5EA00D22302 /* ScoreView.swift in Sources */,
 				939FC5F7300B0F960001D676 /* GameSession.swift in Sources */,
 				939763CB300AC60F00D22302 /* HomeView.swift in Sources */,
+				939FC612300B1B9F0001D676 /* TapFrenzyVM.swift in Sources */,
 				939FC5FA300B0FBD0001D676 /* SessionStore.swift in Sources */,
 				939FC5FD300B10330001D676 /* GameLauncherApp.swift in Sources */,
 				939FC60C300B12A50001D676 /* NotificationService.swift in Sources */,

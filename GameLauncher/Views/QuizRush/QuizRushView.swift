@@ -23,7 +23,7 @@ struct QuizRushView: View {
             case .loaded:
                 gameView
             case .finished:
-                SharedResultView(
+                ResultView(
                     mode: .quizRush,
                     score: viewModel.score,
                     playAgainAction: { viewModel.restartGame() },
