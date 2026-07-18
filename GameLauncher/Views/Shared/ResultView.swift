@@ -51,6 +51,7 @@ struct ResultView: View {
                 .buttonStyle(.bordered)
                 .controlSize(.large)
             }
+            
         }
     }
 }
