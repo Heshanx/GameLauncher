@@ -11,7 +11,6 @@ import MapKit
 struct MapTab: View {
     @EnvironmentObject var store: SessionStore
     
-    //worldview(min iOS 16 needs a state region)
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
         span: MKCoordinateSpan(latitudeDelta: 50, longitudeDelta: 50)
@@ -20,21 +19,26 @@ struct MapTab: View {
     var body: some View {
         NavigationStack {
             Map(coordinateRegion: $region, annotationItems: store.sessions.filter { $0.latitude != 0.0 }) { session in
+                // Using MapAnnotation (iOS 16 compatible)
                 MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: session.latitude, longitude: session.longitude)) {
-                    VStack {
+                    VStack(spacing: 0) {
                         Text("\(session.score)")
                             .font(.caption)
                             .bold()
-                            .padding(5)
-                            .background(Color.purple)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(
+                                LinearGradient(colors: session.mode.gradient, startPoint: .topLeading, endPoint: .bottomTrailing)
+                            )
                             .foregroundColor(.white)
-                            .clipShape(Circle())
+                            .clipShape(Capsule())
+                            .shadow(radius: 3)
                         
                         Image(systemName: "triangle.fill")
-                            .font(.caption)
-                            .foregroundColor(.purple)
+                            .font(.caption2)
+                            .foregroundColor(session.mode.gradient.first ?? .purple)
                             .rotationEffect(.degrees(180))
-                            .offset(y: -5)
+                            .offset(y: -2)
                     }
                 }
             }

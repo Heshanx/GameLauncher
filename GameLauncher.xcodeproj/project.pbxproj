@@ -14,12 +14,9 @@
 		9392A8A6300A798B00343152 /* GameLauncherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392A8A5300A798B00343152 /* GameLauncherUITests.swift */; };
 		9392A8A8300A798B00343152 /* GameLauncherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392A8A7300A798B00343152 /* GameLauncherUITestsLaunchTests.swift */; };
 		939763BC300AC2FE00D22302 /* TapFrenzyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763BB300AC2FE00D22302 /* TapFrenzyView.swift */; };
-		939763C1300AC58200D22302 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763C0300AC58200D22302 /* Game.swift */; };
 		939763C4300AC5C700D22302 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763C3300AC5C700D22302 /* PrimaryButton.swift */; };
 		939763C6300AC5D900D22302 /* GameIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763C5300AC5D900D22302 /* GameIcon.swift */; };
 		939763C8300AC5EA00D22302 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763C7300AC5EA00D22302 /* ScoreView.swift */; };
-		939763CB300AC60F00D22302 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763CA300AC60F00D22302 /* HomeView.swift */; };
-		939763CD300AC62000D22302 /* GameCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763CC300AC62000D22302 /* GameCard.swift */; };
 		939763D2300AD68200D22302 /* LightItUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763D1300AD68200D22302 /* LightItUpView.swift */; };
 		939763D6300AF3B800D22302 /* QuizRushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763D5300AF3B800D22302 /* QuizRushView.swift */; };
 		939763D8300AF77900D22302 /* TriviaQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763D7300AF77900D22302 /* TriviaQuestion.swift */; };
@@ -40,6 +37,10 @@
 		939FC610300B1AF20001D676 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC60F300B1AF20001D676 /* ResultView.swift */; };
 		939FC612300B1B9F0001D676 /* TapFrenzyVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC611300B1B9F0001D676 /* TapFrenzyVM.swift */; };
 		939FC615300B1CB60001D676 /* StatsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC614300B1CB60001D676 /* StatsVM.swift */; };
+		939FC617300B21580001D676 /* LightItUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC616300B21580001D676 /* LightItUpVM.swift */; };
+		939FC619300B218E0001D676 /* LightItUpModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC618300B218E0001D676 /* LightItUpModels.swift */; };
+		939FC61C300B27040001D676 /* PlayerProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC61B300B27040001D676 /* PlayerProfileView.swift */; };
+		939FC61E300B27570001D676 /* GameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC61D300B27570001D676 /* GameCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,12 +71,9 @@
 		9392A8A5300A798B00343152 /* GameLauncherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLauncherUITests.swift; sourceTree = "<group>"; };
 		9392A8A7300A798B00343152 /* GameLauncherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLauncherUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		939763BB300AC2FE00D22302 /* TapFrenzyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapFrenzyView.swift; sourceTree = "<group>"; };
-		939763C0300AC58200D22302 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		939763C3300AC5C700D22302 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		939763C5300AC5D900D22302 /* GameIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameIcon.swift; sourceTree = "<group>"; };
 		939763C7300AC5EA00D22302 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
-		939763CA300AC60F00D22302 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		939763CC300AC62000D22302 /* GameCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCard.swift; sourceTree = "<group>"; };
 		939763D1300AD68200D22302 /* LightItUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightItUpView.swift; sourceTree = "<group>"; };
 		939763D5300AF3B800D22302 /* QuizRushView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizRushView.swift; sourceTree = "<group>"; };
 		939763D7300AF77900D22302 /* TriviaQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaQuestion.swift; sourceTree = "<group>"; };
@@ -96,6 +94,10 @@
 		939FC60F300B1AF20001D676 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		939FC611300B1B9F0001D676 /* TapFrenzyVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapFrenzyVM.swift; sourceTree = "<group>"; };
 		939FC614300B1CB60001D676 /* StatsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVM.swift; sourceTree = "<group>"; };
+		939FC616300B21580001D676 /* LightItUpVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightItUpVM.swift; sourceTree = "<group>"; };
+		939FC618300B218E0001D676 /* LightItUpModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightItUpModels.swift; sourceTree = "<group>"; };
+		939FC61B300B27040001D676 /* PlayerProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProfileView.swift; sourceTree = "<group>"; };
+		939FC61D300B27570001D676 /* GameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				939763C2300AC5A700D22302 /* Components */,
-				939763BF300AC56500D22302 /* Models */,
 				939763BD300AC50700D22302 /* App */,
 				939763B9300AC1F100D22302 /* Views */,
 				9392A88E300A798A00343152 /* Assets.xcassets */,
@@ -189,8 +190,6 @@
 				939FC5FB300B10080001D676 /* Tabs */,
 				939FC5F8300B0FA80001D676 /* Services */,
 				939FC5F3300B0F570001D676 /* Models */,
-				939763D4300AF39900D22302 /* QuizRush */,
-				939763CE300AD62900D22302 /* LightItUp */,
 				939763C9300AC5FE00D22302 /* Home */,
 			);
 			path = Views;
@@ -200,17 +199,8 @@
 			isa = PBXGroup;
 			children = (
 				939FC5FC300B10330001D676 /* GameLauncherApp.swift */,
-				9392A88C300A797D00343152 /* ContentView.swift */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		939763BF300AC56500D22302 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				939763C0300AC58200D22302 /* Game.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		939763C2300AC5A700D22302 /* Components */ = {
@@ -226,38 +216,23 @@
 		939763C9300AC5FE00D22302 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				939763CA300AC60F00D22302 /* HomeView.swift */,
-				939763CC300AC62000D22302 /* GameCard.swift */,
+				939FC61A300B26EA0001D676 /* Components */,
+				9392A88C300A797D00343152 /* ContentView.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		939763CE300AD62900D22302 /* LightItUp */ = {
-			isa = PBXGroup;
-			children = (
-				939763D1300AD68200D22302 /* LightItUpView.swift */,
-			);
-			path = LightItUp;
-			sourceTree = "<group>";
-		};
-		939763D4300AF39900D22302 /* QuizRush */ = {
-			isa = PBXGroup;
-			children = (
-				939763D5300AF3B800D22302 /* QuizRushView.swift */,
-				939763D7300AF77900D22302 /* TriviaQuestion.swift */,
-				939763D9300AF84300D22302 /* TriviaService.swift */,
-				939763DB300AF94600D22302 /* QuizRushViewModel.swift */,
-			);
-			path = QuizRush;
 			sourceTree = "<group>";
 		};
 		939FC5F3300B0F570001D676 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				939763D7300AF77900D22302 /* TriviaQuestion.swift */,
+				939763DB300AF94600D22302 /* QuizRushViewModel.swift */,
 				939FC5F4300B0F700001D676 /* GameMode.swift */,
 				939FC5F6300B0F960001D676 /* GameSession.swift */,
 				939FC611300B1B9F0001D676 /* TapFrenzyVM.swift */,
 				939FC614300B1CB60001D676 /* StatsVM.swift */,
+				939FC616300B21580001D676 /* LightItUpVM.swift */,
+				939FC618300B218E0001D676 /* LightItUpModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -265,6 +240,7 @@
 		939FC5F8300B0FA80001D676 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				939763D9300AF84300D22302 /* TriviaService.swift */,
 				939FC5F9300B0FBD0001D676 /* SessionStore.swift */,
 				939FC609300B12840001D676 /* LocationService.swift */,
 				939FC60B300B12A50001D676 /* NotificationService.swift */,
@@ -296,9 +272,20 @@
 		939FC613300B1C080001D676 /* Games */ = {
 			isa = PBXGroup;
 			children = (
+				939763D1300AD68200D22302 /* LightItUpView.swift */,
 				939763BB300AC2FE00D22302 /* TapFrenzyView.swift */,
+				939763D5300AF3B800D22302 /* QuizRushView.swift */,
 			);
 			path = Games;
+			sourceTree = "<group>";
+		};
+		939FC61A300B26EA0001D676 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				939FC61B300B27040001D676 /* PlayerProfileView.swift */,
+				939FC61D300B27570001D676 /* GameCardView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,14 +421,16 @@
 				939FC60E300B1AA20001D676 /* ScoreBadge.swift in Sources */,
 				9392A88D300A797D00343152 /* ContentView.swift in Sources */,
 				939FC603300B10850001D676 /* MapTab.swift in Sources */,
-				939763CD300AC62000D22302 /* GameCard.swift in Sources */,
+				939FC617300B21580001D676 /* LightItUpVM.swift in Sources */,
 				939763BC300AC2FE00D22302 /* TapFrenzyView.swift in Sources */,
 				939FC605300B10940001D676 /* SettingsTab.swift in Sources */,
 				939763DC300AF94600D22302 /* QuizRushViewModel.swift in Sources */,
+				939FC61C300B27040001D676 /* PlayerProfileView.swift in Sources */,
 				939FC610300B1AF20001D676 /* ResultView.swift in Sources */,
 				939763DA300AF84300D22302 /* TriviaService.swift in Sources */,
 				939FC5FF300B104B0001D676 /* MainTabView.swift in Sources */,
 				939FC615300B1CB60001D676 /* StatsVM.swift in Sources */,
+				939FC61E300B27570001D676 /* GameCardView.swift in Sources */,
 				939FC5F5300B0F700001D676 /* GameMode.swift in Sources */,
 				939763D2300AD68200D22302 /* LightItUpView.swift in Sources */,
 				939FC60A300B12840001D676 /* LocationService.swift in Sources */,
@@ -449,16 +438,15 @@
 				939763C4300AC5C700D22302 /* PrimaryButton.swift in Sources */,
 				939763C8300AC5EA00D22302 /* ScoreView.swift in Sources */,
 				939FC5F7300B0F960001D676 /* GameSession.swift in Sources */,
-				939763CB300AC60F00D22302 /* HomeView.swift in Sources */,
 				939FC612300B1B9F0001D676 /* TapFrenzyVM.swift in Sources */,
 				939FC5FA300B0FBD0001D676 /* SessionStore.swift in Sources */,
+				939FC619300B218E0001D676 /* LightItUpModels.swift in Sources */,
 				939FC5FD300B10330001D676 /* GameLauncherApp.swift in Sources */,
 				939FC60C300B12A50001D676 /* NotificationService.swift in Sources */,
 				939FC601300B105C0001D676 /* StatsTab.swift in Sources */,
 				939763D6300AF3B800D22302 /* QuizRushView.swift in Sources */,
 				939FC608300B11540001D676 /* SharedResultView.swift in Sources */,
 				939763D8300AF77900D22302 /* TriviaQuestion.swift in Sources */,
-				939763C1300AC58200D22302 /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

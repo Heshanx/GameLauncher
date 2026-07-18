@@ -14,7 +14,7 @@ struct ResultView: View {
     let exitAction: () -> Void
     
     var shareText: String {
-        "I just scored \(score) on \(mode.rawValue) in PlayHub! Can you beat that?"
+        "I just scored \(score) on \(mode.rawValue) in Game Center! Can you beat that?"
     }
     
     var body: some View {

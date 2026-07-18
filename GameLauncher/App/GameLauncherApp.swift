@@ -14,7 +14,7 @@ struct GameLauncher: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
                 .environmentObject(sessionStore)
                 .environmentObject(locationService)
                 .onAppear {

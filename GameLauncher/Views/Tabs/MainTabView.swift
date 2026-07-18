@@ -12,22 +12,22 @@ struct MainTabView: View {
         TabView {
             ContentView()
                 .tabItem {
-                    Label("Home", systemImage: "gamecontroller")
+                    Label("Home", systemImage: "gamecontroller.fill")
                 }
             
             StatsTab()
                 .tabItem {
-                    Label("Stats", systemImage: "chart.bar")
+                    Label("Stats", systemImage: "chart.bar.fill")
                 }
             
             MapTab()
                 .tabItem {
-                    Label("Map", systemImage: "map")
+                    Label("Map", systemImage: "map.fill")
                 }
             
             SettingsTab()
                 .tabItem {
-                    Label("Settings", systemImage: "gear")
+                    Label("Settings", systemImage: "gearshape.fill")
                 }
         }
         .tint(.purple)
