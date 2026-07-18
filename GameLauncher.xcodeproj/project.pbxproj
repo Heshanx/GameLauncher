@@ -35,6 +35,8 @@
 		939FC603300B10850001D676 /* MapTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC602300B10850001D676 /* MapTab.swift */; };
 		939FC605300B10940001D676 /* SettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC604300B10940001D676 /* SettingsTab.swift */; };
 		939FC608300B11540001D676 /* SharedResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC607300B11540001D676 /* SharedResultView.swift */; };
+		939FC60A300B12840001D676 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC609300B12840001D676 /* LocationService.swift */; };
+		939FC60C300B12A50001D676 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939FC60B300B12A50001D676 /* NotificationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,8 @@
 		939FC602300B10850001D676 /* MapTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTab.swift; sourceTree = "<group>"; };
 		939FC604300B10940001D676 /* SettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTab.swift; sourceTree = "<group>"; };
 		939FC607300B11540001D676 /* SharedResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedResultView.swift; sourceTree = "<group>"; };
+		939FC609300B12840001D676 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		939FC60B300B12A50001D676 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +266,8 @@
 			isa = PBXGroup;
 			children = (
 				939FC5F9300B0FBD0001D676 /* SessionStore.swift */,
+				939FC609300B12840001D676 /* LocationService.swift */,
+				939FC60B300B12A50001D676 /* NotificationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -426,6 +432,7 @@
 				939FC5FF300B104B0001D676 /* MainTabView.swift in Sources */,
 				939FC5F5300B0F700001D676 /* GameMode.swift in Sources */,
 				939763D2300AD68200D22302 /* LightItUpView.swift in Sources */,
+				939FC60A300B12840001D676 /* LocationService.swift in Sources */,
 				939763C6300AC5D900D22302 /* GameIcon.swift in Sources */,
 				939763C4300AC5C700D22302 /* PrimaryButton.swift in Sources */,
 				939763C8300AC5EA00D22302 /* ScoreView.swift in Sources */,
@@ -433,6 +440,7 @@
 				939763CB300AC60F00D22302 /* HomeView.swift in Sources */,
 				939FC5FA300B0FBD0001D676 /* SessionStore.swift in Sources */,
 				939FC5FD300B10330001D676 /* GameLauncherApp.swift in Sources */,
+				939FC60C300B12A50001D676 /* NotificationService.swift in Sources */,
 				939FC601300B105C0001D676 /* StatsTab.swift in Sources */,
 				939763D6300AF3B800D22302 /* QuizRushView.swift in Sources */,
 				9392A88B300A797D00343152 /* GameLauncherApp.swift in Sources */,
