@@ -12,10 +12,11 @@ struct TriviaResponse: Codable {
 }
 
 struct TriviaQuestion: Codable, Identifiable {
-    var id: UUID { UUID() }
+    let id: UUID
     let question: String
     let correctAnswer: String
     let incorrectAnswers: [String]
+    let shuffledAnswers: [String]
 
     enum CodingKeys: String, CodingKey {
         case question
@@ -23,14 +24,22 @@ struct TriviaQuestion: Codable, Identifiable {
         case incorrectAnswers = "incorrect_answers"
     }
     
-    var shuffledAnswers: [String] {
-        var all = incorrectAnswers
-        all.append(correctAnswer)
-        return all.shuffled()
-    }
-    
-    var decodedQuestion: String {
-        question.decodingHTMLEntities()
+    init(from decoder: Decoder) throws {
+        self.id = UUID()
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        let rawQuestion = try container.decode(String.self, forKey: .question)
+        let rawCorrect = try container.decode(String.self, forKey: .correctAnswer)
+        let rawIncorrect = try container.decode([String].self, forKey: .incorrectAnswers)
+        
+        self.question = rawQuestion.decodingHTMLEntities()
+        self.correctAnswer = rawCorrect.decodingHTMLEntities()
+        self.incorrectAnswers = rawIncorrect.map { $0.decodingHTMLEntities() }
+        
+        var all = self.incorrectAnswers
+        all.append(self.correctAnswer)
+        self.shuffledAnswers = all.shuffled()
     }
 }
 

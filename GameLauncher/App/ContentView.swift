@@ -45,7 +45,7 @@ struct ContentView: View {
                             
                             GameCard(
                                 title: "Quiz Rush",
-                                icon: "",
+                                icon: "brain.head.profile",
                                 color: .purple
                             )}
                     }

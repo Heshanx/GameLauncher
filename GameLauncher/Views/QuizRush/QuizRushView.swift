@@ -51,9 +51,7 @@ struct QuizRushView: View {
                 .font(.headline)
             
             Button("Retry") {
-                Task {
-                    await viewModel.loadGame()
-                }
+                Task { await viewModel.loadGame() }
             }
             .buttonStyle(.borderedProminent)
             .tint(.purple)
@@ -81,9 +79,8 @@ struct QuizRushView: View {
             
             Spacer()
             
-            // Question
             if let question = viewModel.currentQuestion {
-                Text(question.decodedQuestion)
+                Text(question.question)
                     .font(.title2)
                     .bold()
                     .multilineTextAlignment(.center)
@@ -91,11 +88,10 @@ struct QuizRushView: View {
                 
                 Spacer()
                 
-                //answer btns
                 VStack(spacing: 15) {
                     ForEach(question.shuffledAnswers, id: \.self) { answer in
                         AnswerButton(
-                            answer: answer.decodingHTMLEntities(),
+                            answer: answer,
                             isCorrect: answer == question.correctAnswer
                         ) {
                             viewModel.handleAnswer(answer)
@@ -103,6 +99,7 @@ struct QuizRushView: View {
                     }
                 }
                 .padding(.horizontal)
+                .id(question.id)
             }
             
             Spacer()
@@ -181,16 +178,5 @@ struct AnswerButton: View {
                 )
         }
         .offset(x: shakeOffset)
-        .onChange(of: answer) { _ in
-            hasAnswered = false
-            backgroundColor = .purple.opacity(0.1)
-            shakeOffset = 0
-        }
-    }
-}
-
-#Preview {
-    NavigationStack {
-        QuizRushView()
     }
 }
