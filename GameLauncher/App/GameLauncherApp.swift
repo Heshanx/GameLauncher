@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct GameLauncher: App {
+    @StateObject private var sessionStore = SessionStore()
+    @StateObject private var locationService = LocationService()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(sessionStore)
+                .environmentObject(locationService)
+                .onAppear {
+                    locationService.requestPermission()
+                }
         }
     }
 }

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9392A88B300A797D00343152 /* GameLauncherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392A88A300A797D00343152 /* GameLauncherApp.swift */; };
 		9392A88D300A797D00343152 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392A88C300A797D00343152 /* ContentView.swift */; };
 		9392A88F300A798A00343152 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9392A88E300A798A00343152 /* Assets.xcassets */; };
 		9392A892300A798A00343152 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9392A891300A798A00343152 /* Preview Assets.xcassets */; };
@@ -58,7 +57,6 @@
 
 /* Begin PBXFileReference section */
 		9392A887300A797D00343152 /* GameLauncher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameLauncher.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9392A88A300A797D00343152 /* GameLauncherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLauncherApp.swift; sourceTree = "<group>"; };
 		9392A88C300A797D00343152 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9392A88E300A798A00343152 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9392A891300A798A00343152 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -201,7 +199,7 @@
 		939763BD300AC50700D22302 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				9392A88A300A797D00343152 /* GameLauncherApp.swift */,
+				939FC5FC300B10330001D676 /* GameLauncherApp.swift */,
 				9392A88C300A797D00343152 /* ContentView.swift */,
 			);
 			path = App;
@@ -275,7 +273,6 @@
 		939FC5FB300B10080001D676 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				939FC5FC300B10330001D676 /* GameLauncherApp.swift */,
 				939FC5FE300B104B0001D676 /* MainTabView.swift */,
 				939FC600300B105C0001D676 /* StatsTab.swift */,
 				939FC602300B10850001D676 /* MapTab.swift */,
@@ -443,7 +440,6 @@
 				939FC60C300B12A50001D676 /* NotificationService.swift in Sources */,
 				939FC601300B105C0001D676 /* StatsTab.swift in Sources */,
 				939763D6300AF3B800D22302 /* QuizRushView.swift in Sources */,
-				9392A88B300A797D00343152 /* GameLauncherApp.swift in Sources */,
 				939FC608300B11540001D676 /* SharedResultView.swift in Sources */,
 				939763D8300AF77900D22302 /* TriviaQuestion.swift in Sources */,
 				939763C1300AC58200D22302 /* Game.swift in Sources */,
