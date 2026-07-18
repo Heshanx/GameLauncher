@@ -10,6 +10,8 @@ import SwiftUI
 struct QuizRushView: View {
     @StateObject private var viewModel = QuizRushViewModel()
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var store: SessionStore
+    @EnvironmentObject var locationService: LocationService
     
     var body: some View {
         VStack {
@@ -21,7 +23,20 @@ struct QuizRushView: View {
             case .loaded:
                 gameView
             case .finished:
-                resultsView
+                SharedResultView(
+                    mode: .quizRush,
+                    score: viewModel.score,
+                    playAgainAction: { viewModel.restartGame() },
+                    exitAction: { dismiss() }
+                    )
+                    .onAppear {
+                        store.addSession(
+                            mode: .quizRush,
+                            score: viewModel.score,
+                            latitude: locationService.currentLocation?.latitude ?? 0.0,
+                            longitude: locationService.currentLocation?.longitude ?? 0.0
+                            )
+                        }
             }
         }
         .navigationTitle("Quiz Rush")
