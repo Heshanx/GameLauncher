@@ -14,9 +14,6 @@
 		9392A8A6300A798B00343152 /* GameLauncherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392A8A5300A798B00343152 /* GameLauncherUITests.swift */; };
 		9392A8A8300A798B00343152 /* GameLauncherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392A8A7300A798B00343152 /* GameLauncherUITestsLaunchTests.swift */; };
 		939763BC300AC2FE00D22302 /* TapFrenzyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763BB300AC2FE00D22302 /* TapFrenzyView.swift */; };
-		939763C4300AC5C700D22302 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763C3300AC5C700D22302 /* PrimaryButton.swift */; };
-		939763C6300AC5D900D22302 /* GameIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763C5300AC5D900D22302 /* GameIcon.swift */; };
-		939763C8300AC5EA00D22302 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763C7300AC5EA00D22302 /* ScoreView.swift */; };
 		939763D2300AD68200D22302 /* LightItUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763D1300AD68200D22302 /* LightItUpView.swift */; };
 		939763D6300AF3B800D22302 /* QuizRushView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763D5300AF3B800D22302 /* QuizRushView.swift */; };
 		939763D8300AF77900D22302 /* TriviaQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939763D7300AF77900D22302 /* TriviaQuestion.swift */; };
@@ -71,9 +68,6 @@
 		9392A8A5300A798B00343152 /* GameLauncherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLauncherUITests.swift; sourceTree = "<group>"; };
 		9392A8A7300A798B00343152 /* GameLauncherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLauncherUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		939763BB300AC2FE00D22302 /* TapFrenzyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapFrenzyView.swift; sourceTree = "<group>"; };
-		939763C3300AC5C700D22302 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
-		939763C5300AC5D900D22302 /* GameIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameIcon.swift; sourceTree = "<group>"; };
-		939763C7300AC5EA00D22302 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		939763D1300AD68200D22302 /* LightItUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightItUpView.swift; sourceTree = "<group>"; };
 		939763D5300AF3B800D22302 /* QuizRushView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizRushView.swift; sourceTree = "<group>"; };
 		939763D7300AF77900D22302 /* TriviaQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaQuestion.swift; sourceTree = "<group>"; };
@@ -148,7 +142,6 @@
 		9392A889300A797D00343152 /* GameLauncher */ = {
 			isa = PBXGroup;
 			children = (
-				939763C2300AC5A700D22302 /* Components */,
 				939763BD300AC50700D22302 /* App */,
 				939763B9300AC1F100D22302 /* Views */,
 				9392A88E300A798A00343152 /* Assets.xcassets */,
@@ -201,16 +194,6 @@
 				939FC5FC300B10330001D676 /* GameLauncherApp.swift */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		939763C2300AC5A700D22302 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				939763C3300AC5C700D22302 /* PrimaryButton.swift */,
-				939763C5300AC5D900D22302 /* GameIcon.swift */,
-				939763C7300AC5EA00D22302 /* ScoreView.swift */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		939763C9300AC5FE00D22302 /* Home */ = {
@@ -434,9 +417,6 @@
 				939FC5F5300B0F700001D676 /* GameMode.swift in Sources */,
 				939763D2300AD68200D22302 /* LightItUpView.swift in Sources */,
 				939FC60A300B12840001D676 /* LocationService.swift in Sources */,
-				939763C6300AC5D900D22302 /* GameIcon.swift in Sources */,
-				939763C4300AC5C700D22302 /* PrimaryButton.swift in Sources */,
-				939763C8300AC5EA00D22302 /* ScoreView.swift in Sources */,
 				939FC5F7300B0F960001D676 /* GameSession.swift in Sources */,
 				939FC612300B1B9F0001D676 /* TapFrenzyVM.swift in Sources */,
 				939FC5FA300B0FBD0001D676 /* SessionStore.swift in Sources */,
