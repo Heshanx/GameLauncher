@@ -21,11 +21,19 @@ struct LightItUpView: View {
     @State private var lastScore = 0
     @State private var isUrgent = false
     @State private var timerPulse = false
+    @State private var pauseButtonPressed = false
+
+    #if canImport(UIKit)
+    private let selectionHaptic = UISelectionFeedbackGenerator()
+    #endif
+
+    private let accent = Color.orange
 
     var body: some View {
         ZStack {
             backgroundGradient
 
+            //Main Game Layer
             VStack(spacing: 20) {
                 if viewModel.isGameOver {
                     ResultView(
@@ -54,19 +62,51 @@ struct LightItUpView: View {
             }
             .padding()
             .animation(.easeInOut(duration: 0.35), value: viewModel.isGameOver)
+            .blur(radius: viewModel.isPaused ? 12 : 0)
+            .disabled(viewModel.isPaused)
+
+            //pause Menu
+            if viewModel.isPaused {
+                Color.black.opacity(0.35)
+                    .ignoresSafeArea()
+                    .transition(.opacity)
+                    .onTapGesture {
+                        withAnimation(.easeOut(duration: 0.2)) {
+                            viewModel.resumeGame()
+                        }
+                    }
+
+                pauseMenu
+                    .transition(.asymmetric(
+                        insertion: .scale(scale: 0.85).combined(with: .opacity),
+                        removal: .scale(scale: 0.9).combined(with: .opacity)
+                    ))
+            }
         }
+        .animation(.spring(response: 0.35, dampingFraction: 0.8), value: viewModel.isPaused)
         .navigationTitle("Light It Up")
         .navigationBarTitleDisplayMode(.inline)
+
+        .navigationBarBackButtonHidden(viewModel.gameStarted && !viewModel.isGameOver)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+
+                if viewModel.gameStarted && !viewModel.isGameOver {
+                    pauseCloseButton
+                }
+            }
+        }
         .onDisappear {
             if viewModel.gameStarted {
-                viewModel.endGame()
+                viewModel.quitGame()
             }
         }
         .onAppear {
             lastScore = viewModel.score
-            // If the game is already running when this view appears
-            // (e.g. re-entering mid-game), onChange below won't fire
-            // since gameStarted isn't transitioning — so trigger directly.
+            #if canImport(UIKit)
+            selectionHaptic.prepare()
+            #endif
+
             if viewModel.gameStarted {
                 animateTilesIn()
             }
@@ -83,12 +123,173 @@ struct LightItUpView: View {
         }
     }
 
-    // MARK: - Background
+
+    private var pauseCloseButton: some View {
+        Button {
+            #if canImport(UIKit)
+            selectionHaptic.selectionChanged()
+            #endif
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.78)) {
+                if viewModel.isPaused {
+                    viewModel.resumeGame()
+                } else {
+                    viewModel.pauseGame()
+                }
+            }
+        } label: {
+            HStack(spacing: 6) {
+                Image(systemName: viewModel.isPaused ? "xmark" : "pause.fill")
+                    .font(.system(size: 13, weight: .bold))
+
+                if viewModel.isPaused {
+                    Text("Close")
+                        .font(.system(size: 14, weight: .semibold))
+                        .fixedSize()
+                        .transition(.opacity.combined(with: .move(edge: .trailing)))
+                }
+            }
+            .foregroundStyle(viewModel.isPaused ? .white : accent)
+            .padding(.horizontal, viewModel.isPaused ? 16 : 8)
+            .frame(height: 32)
+            .background(
+                Capsule()
+                    .fill(viewModel.isPaused ? Color.gray : accent.opacity(0.14))
+            )
+            .scaleEffect(pauseButtonPressed ? 0.9 : 1.0)
+        }
+        .buttonStyle(.plain)
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in pauseButtonPressed = true }
+                .onEnded { _ in pauseButtonPressed = false }
+        )
+        .animation(.spring(response: 0.4, dampingFraction: 0.78), value: viewModel.isPaused)
+        .animation(.spring(response: 0.25, dampingFraction: 0.5), value: pauseButtonPressed)
+        .accessibilityLabel(viewModel.isPaused ? "Close pause menu" : "Pause game")
+    }
+
+    //pause menu UI
+
+    private var pauseMenu: some View {
+        VStack(spacing: 28) {
+            VStack(spacing: 6) {
+                Image(systemName: "pause.circle.fill")
+                    .font(.system(size: 36))
+                    .foregroundStyle(accent)
+
+                Text("Paused")
+                    .font(.title2.bold())
+                    .foregroundStyle(.primary)
+
+                Text("Score: \(viewModel.score) · \(timeString) left")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+
+            VStack(spacing: 12) {
+                pauseMenuButton(
+                    title: "Resume",
+                    systemImage: "play.fill",
+                    style: .prominent
+                ) {
+                    withAnimation {
+                        viewModel.resumeGame()
+                    }
+                }
+
+                pauseMenuButton(
+                    title: "Restart",
+                    systemImage: "arrow.counterclockwise",
+                    style: .secondary
+                ) {
+                    withAnimation {
+                        viewModel.isPaused = false
+                        tilesAppeared = false
+                        viewModel.startGame()
+                    }
+                    animateTilesIn()
+                }
+
+                pauseMenuButton(
+                    title: "Quit Game",
+                    systemImage: "xmark",
+                    style: .destructive
+                ) {
+                    viewModel.quitGame()
+                    dismiss()
+                }
+            }
+        }
+        .padding(28)
+        .frame(maxWidth: 320)
+        .background(
+            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                .fill(Color(.systemBackground))
+                .shadow(color: .black.opacity(0.3), radius: 28, y: 14)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                .strokeBorder(Color.primary.opacity(0.08), lineWidth: 1)
+        )
+        .padding(.horizontal, 32)
+    }
+
+    private enum PauseButtonStyle {
+        case prominent, secondary, destructive
+    }
+
+    @ViewBuilder
+    private func pauseMenuButton(
+        title: String,
+        systemImage: String,
+        style: PauseButtonStyle,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button {
+            #if canImport(UIKit)
+            selectionHaptic.selectionChanged()
+            #endif
+            action()
+        } label: {
+            HStack(spacing: 10) {
+                Image(systemName: systemImage)
+                    .font(.system(size: 16, weight: .semibold))
+                Text(title)
+                    .font(.system(size: 17, weight: .semibold))
+                Spacer()
+            }
+            .padding(.horizontal, 20)
+            .frame(height: 52)
+            .foregroundStyle(foregroundColor(for: style))
+            .background(
+                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    .fill(backgroundColor(for: style))
+            )
+        }
+        .buttonStyle(.plain)
+    }
+
+    private func backgroundColor(for style: PauseButtonStyle) -> Color {
+        switch style {
+        case .prominent: return accent
+        case .secondary: return Color(.secondarySystemFill)
+        case .destructive: return Color.red.opacity(0.15)
+        }
+    }
+
+    private func foregroundColor(for style: PauseButtonStyle) -> Color {
+        switch style {
+        case .prominent: return .white
+        case .secondary: return .primary
+        case .destructive: return .red
+        }
+    }
+
 
     private var backgroundGradient: some View {
         LinearGradient(
             colors: [
-                Color.purple.opacity(0.12),
+                accent.opacity(0.10),
                 Color(.systemBackground)
             ],
             startPoint: .top,
@@ -97,7 +298,7 @@ struct LightItUpView: View {
         .ignoresSafeArea()
     }
 
-    // MARK: - Gameboard
+    //Gameboard
 
     private var gameboard: some View {
         VStack(spacing: 24) {
@@ -124,33 +325,50 @@ struct LightItUpView: View {
     }
 
     private var header: some View {
-        HStack {
-            Label {
-                Text(timeString)
-                    .font(.title2.monospacedDigit())
-                    .fontWeight(.semibold)
-                    .contentTransition(.numericText())
-            } icon: {
-                Image(systemName: "timer")
-            }
-            .foregroundStyle(viewModel.timeRemaining <= 10 ? .red : .primary)
+        HStack(spacing: 0) {
+            statItem(
+                icon: "timer",
+                value: timeString,
+                tint: viewModel.timeRemaining <= 10 ? .red : .primary
+            )
             .opacity(isUrgent && timerPulse ? 0.4 : 1)
             .onAppear { updateUrgency() }
             .onChange(of: viewModel.timeRemaining) { _ in updateUrgency() }
 
-            Spacer()
+            Divider()
+                .frame(height: 26)
+                .padding(.horizontal, 18)
 
-            Text("\(viewModel.score)")
-                .font(.title2.bold())
-                .contentTransition(.numericText())
-                .scaleEffect(scoreBump ? 1.25 : 1)
-                .animation(.spring(response: 0.3, dampingFraction: 0.4), value: scoreBump)
-                .padding(.horizontal, 14)
-                .padding(.vertical, 6)
-                .background(Capsule().fill(Color.purple.opacity(0.15)))
-                .overlay(Capsule().stroke(Color.purple.opacity(0.3), lineWidth: 1))
+            statItem(
+                icon: "bolt.fill",
+                value: "\(viewModel.score)",
+                tint: accent
+            )
+            .scaleEffect(scoreBump ? 1.18 : 1)
+            .animation(.spring(response: 0.3, dampingFraction: 0.4), value: scoreBump)
         }
-        .padding(.horizontal, 4)
+        .padding(.horizontal, 24)
+        .padding(.vertical, 12)
+        .background(
+            Capsule()
+                .fill(Color(.secondarySystemBackground))
+        )
+        .overlay(
+            Capsule()
+                .strokeBorder(Color.primary.opacity(0.06), lineWidth: 1)
+        )
+        .frame(maxWidth: .infinity, alignment: .center)
+    }
+
+    private func statItem(icon: String, value: String, tint: Color) -> some View {
+        HStack(spacing: 8) {
+            Image(systemName: icon)
+                .font(.system(size: 15, weight: .semibold))
+            Text(value)
+                .font(.system(size: 20, weight: .bold, design: .rounded).monospacedDigit())
+                .contentTransition(.numericText())
+        }
+        .foregroundStyle(tint)
     }
 
     private var timeString: String {
@@ -213,13 +431,12 @@ struct LightItUpView: View {
                 .padding(.vertical, 14)
         }
         .buttonStyle(.borderedProminent)
-        .tint(.purple)
+        .tint(accent)
         .controlSize(.large)
         .padding(.horizontal, 8)
         .transition(.move(edge: .bottom).combined(with: .opacity))
     }
 
-    // MARK: - Helpers
 
     private func updateUrgency() {
         let urgent = viewModel.timeRemaining <= 10

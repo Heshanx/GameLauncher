@@ -57,7 +57,7 @@ struct TapFrenzyView: View {
                     }
                 }
 
-                // Edge warning glow
+                //edge warning glow
                 RoundedRectangle(cornerRadius: 0)
                     .stroke(Color.red, lineWidth: 6)
                     .blur(radius: 8)
@@ -69,7 +69,6 @@ struct TapFrenzyView: View {
             .disabled(viewModel.isPaused)
 
             if viewModel.isPaused {
-                // Dimmed backdrop, tap outside the card to resume
                 Color.black.opacity(0.35)
                     .ignoresSafeArea()
                     .transition(.opacity)
@@ -113,7 +112,6 @@ struct TapFrenzyView: View {
         }
     }
 
-    // MARK: - Pause / Close Button (toolbar)
 
     private var pauseCloseButton: some View {
         Button {
@@ -157,7 +155,7 @@ struct TapFrenzyView: View {
         .accessibilityLabel(viewModel.isPaused ? "Close pause menu" : "Pause game")
     }
 
-    // MARK: - Pause Menu
+    //Pause Menu
 
     private var pauseMenu: some View {
         VStack(spacing: 28) {
@@ -376,7 +374,7 @@ struct TapFrenzyView: View {
             )
     }
 
-    // MARK: - Tap handling
+    //Tap handling
 
     private func handleTap() {
         viewModel.tap()

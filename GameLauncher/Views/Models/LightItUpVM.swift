@@ -17,6 +17,7 @@ class LightItUpVM: ObservableObject {
     @Published var level: Level = .l1
     @Published var gameStarted = false
     @Published var isGameOver = false
+    @Published var isPaused = false
     
     private var gameTimer: Timer?
     private var lightTimer: Timer?
@@ -29,18 +30,35 @@ class LightItUpVM: ObservableObject {
         timeRemaining = 60
         gameStarted = true
         isGameOver = false
+        isPaused = false
         level = .l1
         
         createCards(for: level)
         startLightTimer()
-        
-        // Main game countdown timer
-        gameTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-            Task { @MainActor [weak self] in
-                self?.tickGameTime()
-            }
-        }
+        startGameTimer()
     }
+    
+    
+    func pauseGame() {
+        guard gameStarted && !isGameOver else { return }
+        isPaused = true
+
+        gameTimer?.invalidate()
+        lightTimer?.invalidate()
+    }
+    
+    func resumeGame() {
+        isPaused = false
+        
+        startLightTimer()
+        startGameTimer()
+    }
+    
+    func quitGame() {
+        isPaused = false
+        endGame()
+    }
+    
     
     func endGame() {
         gameTimer?.invalidate()
@@ -50,7 +68,8 @@ class LightItUpVM: ObservableObject {
     }
     
     func tapCard(at index: Int) {
-        guard gameStarted else { return }
+
+        guard gameStarted && !isGameOver && !isPaused else { return }
         
         if cards[index].isLit {
             score += 1
@@ -60,7 +79,14 @@ class LightItUpVM: ObservableObject {
         }
     }
     
-    // MARK: - Private Game Logic
+    private func startGameTimer() {
+        gameTimer?.invalidate()
+        gameTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            Task { @MainActor [weak self] in
+                self?.tickGameTime()
+            }
+        }
+    }
     
     private func tickGameTime() {
         timeRemaining -= 1
