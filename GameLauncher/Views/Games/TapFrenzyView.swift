@@ -21,8 +21,10 @@ struct TapFrenzyView: View {
     @State private var totalTime: Int = 0
     @State private var showCountdown = true
     @State private var countdownValue = 3
+    @State private var pauseButtonPressed = false
 
     private let hapticGenerator = UIImpactFeedbackGenerator(style: .medium)
+    private let selectionHaptic = UISelectionFeedbackGenerator()
     private var isCritical: Bool { viewModel.timeRemaining <= 3 && !showCountdown }
 
     var body: some View {
@@ -30,42 +32,78 @@ struct TapFrenzyView: View {
             Color(.systemBackground)
                 .ignoresSafeArea()
 
-            VStack {
-                if showCountdown {
-                    countdownOverlay
-                } else if !viewModel.isGameOver {
-                    gameUI
-                } else {
-                    ResultView(
-                        mode: .tapFrenzy,
-                        score: viewModel.score,
-                        playAgainAction: { runCountdown { viewModel.startGame() } },
-                        exitAction: { dismiss() }
-                    )
-                    .onAppear {
-                        store.addSession(
+            //Main Game Layer
+            ZStack {
+                VStack {
+                    if showCountdown {
+                        countdownOverlay
+                    } else if !viewModel.isGameOver {
+                        gameUI
+                    } else {
+                        ResultView(
                             mode: .tapFrenzy,
                             score: viewModel.score,
-                            latitude: locationService.currentLocation?.latitude ?? 0.0,
-                            longitude: locationService.currentLocation?.longitude ?? 0.0
+                            playAgainAction: { runCountdown { viewModel.startGame() } },
+                            exitAction: { dismiss() }
                         )
+                        .onAppear {
+                            store.addSession(
+                                mode: .tapFrenzy,
+                                score: viewModel.score,
+                                latitude: locationService.currentLocation?.latitude ?? 0.0,
+                                longitude: locationService.currentLocation?.longitude ?? 0.0
+                            )
+                        }
                     }
                 }
-            }
 
-            // Edge warning glow, only visible near the end of the round
-            RoundedRectangle(cornerRadius: 0)
-                .stroke(Color.red, lineWidth: 6)
-                .blur(radius: 8)
-                .opacity(isCritical ? (scorePulse ? 0.7 : 0.3) : 0)
-                .ignoresSafeArea()
-                .allowsHitTesting(false)
+                // Edge warning glow
+                RoundedRectangle(cornerRadius: 0)
+                    .stroke(Color.red, lineWidth: 6)
+                    .blur(radius: 8)
+                    .opacity(isCritical ? (scorePulse ? 0.7 : 0.3) : 0)
+                    .ignoresSafeArea()
+                    .allowsHitTesting(false)
+            }
+            .blur(radius: viewModel.isPaused ? 12 : 0)
+            .disabled(viewModel.isPaused)
+
+            if viewModel.isPaused {
+                // Dimmed backdrop, tap outside the card to resume
+                Color.black.opacity(0.35)
+                    .ignoresSafeArea()
+                    .transition(.opacity)
+                    .onTapGesture {
+                        withAnimation(.easeOut(duration: 0.2)) {
+                            viewModel.resumeGame()
+                        }
+                    }
+
+                pauseMenu
+                    .transition(.asymmetric(
+                        insertion: .scale(scale: 0.85).combined(with: .opacity),
+                        removal: .scale(scale: 0.9).combined(with: .opacity)
+                    ))
+            }
         }
+        .animation(.spring(response: 0.35, dampingFraction: 0.8), value: viewModel.isPaused)
         .navigationTitle("Tap Frenzy")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(!viewModel.isGameOver && !showCountdown)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                if !viewModel.isGameOver && !showCountdown {
+                    pauseCloseButton
+                }
+            }
+        }
         .onAppear {
             hapticGenerator.prepare()
+            selectionHaptic.prepare()
             runCountdown { viewModel.startGame() }
+        }
+        .onDisappear {
+            viewModel.quitGame()
         }
         .onChange(of: isCritical) { critical in
             guard critical else { return }
@@ -75,7 +113,164 @@ struct TapFrenzyView: View {
         }
     }
 
-    // MARK: - Countdown
+    // MARK: - Pause / Close Button (toolbar)
+
+    private var pauseCloseButton: some View {
+        Button {
+            selectionHaptic.selectionChanged()
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.78)) {
+                if viewModel.isPaused {
+                    viewModel.resumeGame()
+                } else {
+                    viewModel.pauseGame()
+                }
+            }
+        } label: {
+            HStack(spacing: 6) {
+                Image(systemName: viewModel.isPaused ? "xmark" : "pause.fill")
+                    .font(.system(size: 13, weight: .bold))
+
+                if viewModel.isPaused {
+                    Text("Close")
+                        .font(.system(size: 14, weight: .semibold))
+                        .fixedSize()
+                        .transition(.opacity.combined(with: .move(edge: .trailing)))
+                }
+            }
+            .foregroundStyle(viewModel.isPaused ? .white : .blue)
+            .padding(.horizontal, viewModel.isPaused ? 16 : 8)
+            .frame(height: 32)
+            .background(
+                Capsule()
+                    .fill(viewModel.isPaused ? Color.gray : Color.blue.opacity(0.12))
+            )
+            .scaleEffect(pauseButtonPressed ? 0.9 : 1.0)
+        }
+        .buttonStyle(.plain)
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in pauseButtonPressed = true }
+                .onEnded { _ in pauseButtonPressed = false }
+        )
+        .animation(.spring(response: 0.4, dampingFraction: 0.78), value: viewModel.isPaused)
+        .animation(.spring(response: 0.25, dampingFraction: 0.5), value: pauseButtonPressed)
+        .accessibilityLabel(viewModel.isPaused ? "Close pause menu" : "Pause game")
+    }
+
+    // MARK: - Pause Menu
+
+    private var pauseMenu: some View {
+        VStack(spacing: 28) {
+            VStack(spacing: 6) {
+                Image(systemName: "pause.circle.fill")
+                    .font(.system(size: 36))
+                    .foregroundStyle(.blue)
+
+                Text("Paused")
+                    .font(.title2.bold())
+                    .foregroundStyle(.primary)
+
+                Text("Score: \(viewModel.score) · \(viewModel.timeRemaining)s left")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+
+            VStack(spacing: 12) {
+                pauseMenuButton(
+                    title: "Resume",
+                    systemImage: "play.fill",
+                    style: .prominent
+                ) {
+                    withAnimation {
+                        viewModel.resumeGame()
+                    }
+                }
+
+                pauseMenuButton(
+                    title: "Restart",
+                    systemImage: "arrow.counterclockwise",
+                    style: .secondary
+                ) {
+                    withAnimation {
+                        viewModel.isPaused = false
+                    }
+                    runCountdown { viewModel.startGame() }
+                }
+
+                pauseMenuButton(
+                    title: "Quit Game",
+                    systemImage: "xmark",
+                    style: .destructive
+                ) {
+                    viewModel.quitGame()
+                    dismiss()
+                }
+            }
+        }
+        .padding(28)
+        .frame(maxWidth: 320)
+        .background(
+            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                .fill(Color(.systemBackground))
+                .shadow(color: .black.opacity(0.3), radius: 28, y: 14)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                .strokeBorder(Color.primary.opacity(0.08), lineWidth: 1)
+        )
+        .padding(.horizontal, 32)
+    }
+
+    private enum PauseButtonStyle {
+        case prominent, secondary, destructive
+    }
+
+    @ViewBuilder
+    private func pauseMenuButton(
+        title: String,
+        systemImage: String,
+        style: PauseButtonStyle,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button {
+            selectionHaptic.selectionChanged()
+            action()
+        } label: {
+            HStack(spacing: 10) {
+                Image(systemName: systemImage)
+                    .font(.system(size: 16, weight: .semibold))
+                Text(title)
+                    .font(.system(size: 17, weight: .semibold))
+                Spacer()
+            }
+            .padding(.horizontal, 20)
+            .frame(height: 52)
+            .foregroundStyle(foregroundColor(for: style))
+            .background(
+                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    .fill(backgroundColor(for: style))
+            )
+        }
+        .buttonStyle(.plain)
+    }
+
+    private func backgroundColor(for style: PauseButtonStyle) -> Color {
+        switch style {
+        case .prominent: return .blue
+        case .secondary: return Color(.secondarySystemFill)
+        case .destructive: return Color.red.opacity(0.15)
+        }
+    }
+
+    private func foregroundColor(for style: PauseButtonStyle) -> Color {
+        switch style {
+        case .prominent: return .white
+        case .secondary: return .primary
+        case .destructive: return .red
+        }
+    }
+
+    //Countdown
 
     private var countdownOverlay: some View {
         Text(countdownValue > 0 ? "\(countdownValue)" : "GO!")
@@ -96,8 +291,6 @@ struct TapFrenzyView: View {
             if countdownValue < 0 {
                 timer.invalidate()
                 completion()
-                // Capture the real starting duration for the progress bar,
-                // right after the VM resets its timer.
                 totalTime = viewModel.timeRemaining
                 withAnimation(.easeOut(duration: 0.3)) {
                     showCountdown = false
@@ -106,7 +299,7 @@ struct TapFrenzyView: View {
         }
     }
 
-    // MARK: - Game UI
+    //Game UI
 
     private var gameUI: some View {
         VStack(spacing: 40) {
